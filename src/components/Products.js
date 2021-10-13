@@ -8,7 +8,7 @@ function Products(props) {
   useEffect(async () => {
     try {
       let product = await axios
-        .get("http://localhost:3001/products/getproducts")
+        .get("https://rentalshop.herokuapp.com/products/getproducts")
         .then((response) => {
           // console.log(response.data)
           productContext.setProductList(response.data);
@@ -30,7 +30,7 @@ function Products(props) {
     try {
       await axios
         .post(
-          "http://localhost:3001/users/cart",
+          "https://rentalshop.herokuapp.com/users/cart",
           {cartItem},
           {
             headers: {

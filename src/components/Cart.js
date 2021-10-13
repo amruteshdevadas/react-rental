@@ -9,7 +9,7 @@ function Cart() {
   const fetchList = async () => {
     try {
       let product = await axios
-        .get("http://localhost:3001/users/usercart",{
+        .get("https://rentalshop.herokuapp.com/users/usercart",{
           headers: {
             Authorization:window.localStorage.getItem("app_token")
           }

@@ -21,7 +21,7 @@ async function handleSubmit(e){
    search= null
  }
   try {
-    await axios.get(`http://localhost:3001/products/searchInput/${search}`,)
+    await axios.get(`https://rentalshop.herokuapp.com/products/searchInput/${search}`,)
     .then((response) => {
       console.log(response.data.productList);
       productContext.setProductList(response.data.productList);

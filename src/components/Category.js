@@ -16,7 +16,7 @@ if(e.target.checked){
 
     if(true){    
     try {
-      await axios.get(`http://localhost:3001/products/checkbox/${search}`,)
+      await axios.get(`https://rentalshop.herokuapp.com/products/checkbox/${search}`,)
       .then((response) => {
         console.log(response.data.productList);
         let newproduct = response.data.productList

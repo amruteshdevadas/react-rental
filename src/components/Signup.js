@@ -43,7 +43,7 @@ function Signup() {
 
     try {
       await axios
-        .post(`http://localhost:3001/users/register`, {newUser
+        .post(`https://rentalshop.herokuapp.com/users/register`, {newUser
         })
         .then((response) => {
           console.log(response.data);

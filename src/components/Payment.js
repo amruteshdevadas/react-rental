@@ -25,7 +25,7 @@ function Payment() {
             return;
         }
 
-        const result = await axios.post("http://localhost:5000/payment/orders");
+        const result = await axios.post("https://rentalshop.herokuapp.com/payment/orders");
 
         if (!result) {
             alert("Server error. Are you online?");
@@ -50,7 +50,7 @@ function Payment() {
                     razorpaySignature: response.razorpay_signature,
                 };
 
-                const result = await axios.post("http://localhost:5000/payment/success", data);
+                const result = await axios.post("https://rentalshop.herokuapp.com/payment/success", data);
 
                 alert(result.data.msg);
             },

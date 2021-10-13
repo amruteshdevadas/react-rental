@@ -34,7 +34,7 @@ function Createuser() {
     let city = userData.password
   
      try {
-      await axios.post(`http://localhost:3001/users/login`, {userData
+      await axios.post(`https://rentalshop.herokuapp.com/users/login`, {userData
     })
     .then((response) => {
       console.log(response.data) ;
