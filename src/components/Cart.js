@@ -113,7 +113,7 @@ function Cart() {
         return;
     }
 
-    const result = await axios.post("http://localhost:3001/payment/orders",{total});
+    const result = await axios.post("https://rentalshop.herokuapp.com/payment/orders",{total});
 
     if (!result) {
         alert("Server error. Are you online?");
