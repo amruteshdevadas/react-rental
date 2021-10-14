@@ -32,7 +32,7 @@ function Cart() {
     {
       try {
         await axios
-          .put(`http://localhost:3001/users/addquantity`, { productId },{
+          .put(`https://rentalshop.herokuapp.com/users/addquantity`, { productId },{
             headers: {
               Authorization:window.localStorage.getItem("app_token")
             }
@@ -63,7 +63,7 @@ function Cart() {
    
     try {
       await axios
-        .delete(`http://localhost:3001/users/deletequantity`,
+        .delete(`https://rentalshop.herokuapp.com/users/deletequantity`,
         { 
           data:{ productId:productId, quantity:quantity },
           headers: {
