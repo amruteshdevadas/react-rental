@@ -1,19 +1,22 @@
 //react component for creating an user
 //formik for vaildation
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import { useHistory } from "react-router";
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import Message from './Message'
 function Createuser() {
 
   let history = useHistory();
 
   const initialValues = { email: "", password: "" };
+  const [message, setMessage] = useState('')
+  const [ShowMessage, setShowMessage] = useState(false)
+  const [variant, setvariant] = useState("alert alert-primary")
 
   const validate = (values) => {
-    // console.log(values)
     const errors = {};
     
     if (!values.password) {
@@ -34,20 +37,31 @@ function Createuser() {
     let city = userData.password
   
      try {
-      await axios.post(`https://rentalshop.herokuapp.com/users/login`, {userData
+      await axios.post(`http://localhost:5000/users/login`, {userData
     })
     .then((response) => {
       console.log(response.data) ;
       window.localStorage.setItem("app_token",response.data.token)
+      setShowMessage(true)
+      setvariant("alert alert-success")
+      setMessage("Loggged in Successfully")
+      setTimeout(() => {
+      history.push("/");
+      onSubmitProps.resetForm();
+      }, 1500);
     })
      } catch (error) {
        console.log(error)
+       setShowMessage(true)
+       setvariant("alert alert-danger")
+       setMessage(error.response.data.message)
      }
-    history.push("/");
-    onSubmitProps.resetForm();
+   
   }
 
   return (
+    <>{ ShowMessage ? <Message variant={variant} message={message}/> : null}
+    
     <div className="row">
     <div className=" ms-auto mx-auto mt-3 card border-primary col-lg-4">
       <Formik
@@ -105,8 +119,6 @@ function Createuser() {
                 />
                 <Link to="/register" className="btn btn-primary mt-3 mb-3 text-center ">Sign Up </Link>
               </div>
-
-
               {/* </div> */}
             </Form>
           </div>
@@ -114,6 +126,7 @@ function Createuser() {
       </Formik>
     </div>
     </div>
+    </>
   );
 }
 

@@ -1,13 +1,19 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useHistory } from "react-router";
 import axios from "axios";
+import Message from './Message'
+
 
 function Signup() {
   let history = useHistory();
 
   const initialValues = { name: "", email: "", password: ""};
+  const [message, setMessage] = useState('')
+  const [ShowMessage, setShowMessage] = useState(false)
+  const [variant, setvariant] = useState("alert alert-primary")
+
 
   const validate = (values) => {
     // console.log(values)
@@ -43,19 +49,29 @@ function Signup() {
 
     try {
       await axios
-        .post(`https://rentalshop.herokuapp.com/users/register`, {newUser
+        .post(`http://localhost:5000/users/register`, {newUser
         })
         .then((response) => {
           console.log(response.data);
+          setShowMessage(true)
+          setvariant("alert alert-success")
+          setMessage(response.data.message)
+          setTimeout(() => {
           history.push("/");
+          onSubmitProps.resetForm();
+          }, 1500);
         });
     } catch (error) {
       console.log(error);
+      setShowMessage(true)
+       setvariant("alert alert-danger")
+       setMessage(error.response.data.message)
     }
   }
 
   return (
-    <div>
+    <>
+{ ShowMessage ? <Message variant={variant} message={message}/> : null}
       <div className="row">
         <div className=" ms-auto mx-auto mt-3 card border-primary col-lg-4">
           <Formik
@@ -131,7 +147,7 @@ function Signup() {
           </Formik>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

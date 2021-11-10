@@ -19,7 +19,7 @@ function Products(props) {
   }, []);
 
   async function handleAdd(obj) {
-    console.log(obj);
+    // console.log(obj);
     let cartItem = {
       _id: obj._id,
       productName: obj.productName,
@@ -30,7 +30,7 @@ function Products(props) {
     try {
       await axios
         .post(
-          "https://rentalshop.herokuapp.com/users/cart",
+          "http://localhost:5000/users/cart",
           {cartItem},
           {
             headers: {
