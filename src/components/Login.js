@@ -37,7 +37,7 @@ function Createuser() {
     let city = userData.password
   
      try {
-      await axios.post(`http://localhost:5000/users/login`, {userData
+      await axios.post(`https://rentalshop.herokuapp.com/users/login`, {userData
     })
     .then((response) => {
       console.log(response.data) ;
@@ -77,18 +77,6 @@ function Createuser() {
           </div>
           <div className="container">
             <Form>
-              {/* <div className="row"> */}
-              {/* <div className="col-lg-12">
-                <label className="fw-bold">Name</label>
-                <Field
-                  type="text"
-                  className="form-control"
-                  name="name"
-                ></Field>
-                <ErrorMessage name="name">
-                  {(error) => <h6 className="link-danger">{error}</h6>}
-                </ErrorMessage>
-              </div> */}
               <div className="col-lg-12">
                 <label className="fw-bold">Email</label>
                 <Field

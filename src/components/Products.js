@@ -30,7 +30,7 @@ function Products(props) {
     try {
       await axios
         .post(
-          "http://localhost:5000/users/cart",
+          "https://rentalshop.herokuapp.com/users/cart",
           {cartItem},
           {
             headers: {
