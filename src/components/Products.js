@@ -27,6 +27,7 @@ function Products(props) {
       quantity: 1,
       image:obj.image
     };
+
     try {
       await axios
         .post(
@@ -69,8 +70,9 @@ function Products(props) {
                     href="#"
                     className="btn btn-success btn-block mb-3"
                     onClick={() => {
-                      handleAdd(item);
+                      handleAdd(item)
                     }}
+                    disabled={false}
                   >
                     Add to cart
                   </button>

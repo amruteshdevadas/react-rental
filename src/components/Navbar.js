@@ -8,7 +8,7 @@ function Navbar() {
   let history = useHistory();
   const productContext = useContext(ProductContext);
 const [product,setProduct]=useState("")
-  
+  const login = window.localStorage.getItem("app_token")
 async function handleSubmit(e){
   e.preventDefault()
   console.log(product)
@@ -59,12 +59,16 @@ const logout = ()=>{
               <i className="fa fa-shopping-cart"></i> Cart
               {/* <span className="badge badge-dark">{cartLength}</span> */}
             </Link>
-            <Link className="btn btn-warning mx-1" to="/login">
+            {
+              !login ? 
+              <Link className="btn btn-warning mx-1" to="/login">
               Login
             </Link>
-            <button  className="btn btn-danger" onClick={logout}>
+              :<button  className="btn btn-danger" onClick={logout}>
               Logout
             </button>
+            }
+            
           </form>
         </div>
       </nav>

@@ -40,7 +40,7 @@ function Createuser() {
       await axios.post(`https://rentalshop.herokuapp.com/users/login`, {userData
     })
     .then((response) => {
-      console.log(response.data) ;
+      // console.log(response.data) ;
       window.localStorage.setItem("app_token",response.data.token)
       setShowMessage(true)
       setvariant("alert alert-success")

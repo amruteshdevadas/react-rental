@@ -14,7 +14,7 @@ function Cart() {
   
     console.log("fetching list");
       let product = await axios
-        .get("https://rentalshop.herokuapp.com/users/usercart",{
+        .get("http://localhost:5000/users/usercart",{
           headers: {
             Authorization:window.localStorage.getItem("app_token")
           }
@@ -35,10 +35,10 @@ function Cart() {
             // setVariant("alert alert-success")
         })
     .catch((error)=> {
-      // console.log(error);
+      console.log(error);
       setCart([])
-      // setMessage(error.message);
-      // setShowMessage(true)
+      setMessage(error.response.data.message);
+      setShowMessage(true)
     })
   };
   useEffect(() => {
