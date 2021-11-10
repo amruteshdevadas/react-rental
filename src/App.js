@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ProductContext, { ProductProvider } from "./components/Productcontext";
 function App() {
-  console.log(ProductContext.productList);
+  // console.log(ProductContext.productList);
 
   return (
     <div>

@@ -11,7 +11,8 @@ function Cart() {
   const [variant ,setVariant] = useState("alert alert-danger");
 
   const fetchList = async () => {
-    try {
+  
+    console.log("fetching list");
       let product = await axios
         .get("https://rentalshop.herokuapp.com/users/usercart",{
           headers: {
@@ -19,17 +20,28 @@ function Cart() {
           }
         })
         .then((response) => { 
+          console.log(response.data);
+          if(response.data.userCartList)
+          {
             setCart(response.data.userCartList[0].products)
+          }
+            else{
+              setCart([])
+            }
             setTotal(response.data.totalAmount)
-        });
-    } catch (error) {
+
+            // setMessage(response.data.message)
+            // setShowMessage(true)
+            // setVariant("alert alert-success")
+        })
+    .catch((error)=> {
       // console.log(error);
       setCart([])
-      setMessage("Login to add to Cart")
-      setShowMessage(true)
-    }
+      // setMessage(error.message);
+      // setShowMessage(true)
+    })
   };
-  useEffect(async () => {
+  useEffect(() => {
     fetchList();
   }, []);
 
@@ -45,6 +57,7 @@ function Cart() {
           })
           .then((response) => {
             console.log(response.data);
+            fetchList()
             if(response.data.totalAmount)
             {
               setTotal(response.data.totalAmount)
@@ -52,16 +65,17 @@ function Cart() {
             else{
               setTotal(0)
             }
-            fetchList()
           });
           ;
           
       } catch (error) {
         console.log(error);
+        // setMessage(error.message);
+        // setShowMessage(true)
+
       }
     }
   };
-
   const handleRemove = async (e) => {
  
     let productId = e._id;
@@ -78,19 +92,19 @@ function Cart() {
         })
         .then((response) => {
           console.log(response.data);
+          fetchList()
           if(response.data.totalAmount)
             {
               setTotal(response.data.totalAmount)
             }
             else{
               setTotal(0)
-            }
-            fetchList()
+            }     
         });
 
     } catch (error) {
       fetchList()
-      // console.log(error);
+      console.log(error);
     }
   };
 

@@ -23,7 +23,7 @@ async function handleSubmit(e){
   try {
     await axios.get(`https://rentalshop.herokuapp.com/products/searchInput/${search}`,)
     .then((response) => {
-      console.log(response.data.productList);
+      // console.log(response.data.productList);
       productContext.setProductList(response.data.productList);
       
     });
@@ -57,12 +57,12 @@ const logout = ()=>{
             </button>
             <Link className="btn btn-success btn-sm ml-3 mx-3" to="/cart">
               <i className="fa fa-shopping-cart"></i> Cart
-              <span className="badge badge-dark">{cartLength}</span>
+              {/* <span className="badge badge-dark">{cartLength}</span> */}
             </Link>
-            <Link className="btn btn-warning" to="/login">
+            <Link className="btn btn-warning mx-1" to="/login">
               Login
             </Link>
-            <button  className="btn btn-warning" onClick={logout}>
+            <button  className="btn btn-danger" onClick={logout}>
               Logout
             </button>
           </form>
