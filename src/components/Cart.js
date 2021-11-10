@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
+import Message from "./Message";
 
 function Cart() {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+  const [variant ,setVariant] = useState("alert alert-danger");
 
   const fetchList = async () => {
     try {
@@ -21,6 +25,8 @@ function Cart() {
     } catch (error) {
       // console.log(error);
       setCart([])
+      setMessage("Login to add to Cart")
+      setShowMessage(true)
     }
   };
   useEffect(async () => {
@@ -162,7 +168,10 @@ function Cart() {
 }
 
   return (
-    <div>
+    <>
+    {
+      showMessage && <Message message={message} variant={variant} />
+    }
       <div className="cart-wrap">
         <div className="container">
           <div className="row">
@@ -283,7 +292,7 @@ function Cart() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
